@@ -23,4 +23,27 @@ Consolidated the architecture study into one system-level document:
 
 ### Next Focus
 
-Begin the detailed perception phase with the Lane Marker Detector: role, inputs, outputs, evaluation, and then core logic.
+Begin Phase 2: Driving Scenarios, starting with reusable highway-road and traffic scenarios.
+## 2026-08-04 — Driving Scenarios phase started
+
+Created and simulated the first reusable Automated Driving Toolbox scenario.
+
+### Scenario 01 — Straight Highway Lead Vehicle
+
+- Created a 250 m, two-lane straight highway in Driving Scenario Designer.
+- Defined `EgoVehicle` in the right lane at 25 m/s (90 km/h).
+- Defined `LeadVehicle` ahead in the same lane at 20 m/s (72 km/h).
+- Created a 60 m initial gap and a 5 m/s closing-speed condition.
+- Verified the relative motion in the Designer simulation.
+- Exported the scenario as a MATLAB function and saved the Designer project file.
+- Added GitHub-ready scenario documentation and a simulation image.
+
+### Files
+
+- `matlab/02_driving_scenarios/scenario01_straight_highway_lead_vehicle.m`
+- `matlab/02_driving_scenarios/scenario01_straight_highway_lead_vehicle.mat`
+- `matlab/02_driving_scenarios/README.md`
+
+### Next Focus
+
+Create a curved-highway scenario, then build an intersection scenario before beginning virtual sensor simulation.
