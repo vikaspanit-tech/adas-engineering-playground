@@ -47,3 +47,25 @@ Created and simulated the first reusable Automated Driving Toolbox scenario.
 ### Next Focus
 
 Create a curved-highway scenario, then build an intersection scenario before beginning virtual sensor simulation.
+## 2026-08-06 — Curved highway scenario complete
+
+Created, simulated, exported, and documented Scenario 02: Curved Highway Lead Vehicle.
+
+### Covered
+
+- Curved road creation using multiple road-centre points
+- Two-lane road layout and lane markings
+- Ego-vehicle trajectory design through changing road geometry
+- Slower lead-vehicle trajectory in the same lane
+- Relative-motion observation in an ego-centric simulation view
+- Export of the Designer scenario to a clean MATLAB function
+
+### Files
+
+- `matlab/02_driving_scenarios/scenario02_curved_highway_lead_vehicle.m`
+- `matlab/02_driving_scenarios/scenario02_curved_highway_lead_vehicle.mat`
+- `assets/images/scenario02_curved_highway_lead_vehicle_simulation.png`
+
+### Next Focus
+
+Create an intersection scenario with crossing actors, then begin virtual-sensor simulation.
