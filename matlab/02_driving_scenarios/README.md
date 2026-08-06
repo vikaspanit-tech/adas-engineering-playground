@@ -14,6 +14,18 @@ Reusable Automated Driving Toolbox scenarios for developing and validating ADAS 
 
 ![Scenario 01 simulation view](../../assets/images/scenario01_straight_highway_lead_vehicle_simulation.png)
 
+### Objective
+
+Create a simple, repeatable same-lane lead-vehicle scenario before introducing sensors, planning, or control.
+
+```mermaid
+flowchart LR
+    E[EgoVehicle<br/>25 m/s] -->|Closes at 5 m/s| L[LeadVehicle<br/>20 m/s]
+    E --- R[Straight two-lane highway]
+    L --- R
+```
+
+
 | Parameter | Value |
 | --- | --- |
 | Road | 250 m straight, two lanes |
@@ -27,6 +39,18 @@ Reusable Automated Driving Toolbox scenarios for developing and validating ADAS 
 ## Scenario 02 — Curved Highway Lead Vehicle
 
 ![Scenario 02 simulation view](../../assets/images/scenario02_curved_highway_lead_vehicle_simulation.png)
+
+### Objective
+
+Create a curved-road following scenario that introduces changing road geometry while retaining a clear ego/lead-vehicle interaction.
+
+```mermaid
+flowchart LR
+    E[EgoVehicle<br/>15 m/s] -->|Closes at 3 m/s| L[LeadVehicle<br/>12 m/s]
+    E --- R[Curved two-lane highway]
+    L --- R
+```
+
 
 | Parameter | Value |
 | --- | --- |
