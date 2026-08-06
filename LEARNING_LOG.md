@@ -90,3 +90,35 @@ Created, simulated, exported, and documented Scenario 03: Intersection Crossing 
 ### Next Focus
 
 Begin virtual sensor simulation with a forward-facing ego camera, its field of view, and synthetic detections.
+## 2026-08-06 — Vehicle Dynamics fundamentals complete
+
+Completed a foundational Vehicle Dynamics study using MATLAB implementations of the kinematic and dynamic bicycle models.
+
+### Covered
+
+- Vehicle world and body coordinate systems
+- Kinematic bicycle model: position, heading, turning radius, Euler integration, time-varying steering, and longitudinal acceleration
+- Dynamic bicycle model: lateral velocity, yaw rate, tyre slip angles, linear tyre forces, and side-slip angle
+- Handling balance: baseline, understeer tendency, and oversteer tendency through front/rear cornering-stiffness changes
+- Ackermann steering geometry and the bicycle-model steering approximation
+- Steering actuator angle saturation and steering-rate limiting
+- Direct kinematic-versus-dynamic trajectory and heading comparison
+
+### Files
+
+- `docs/03_vehicle_dynamics/Vehicle_Dynamics.md`
+- `matlab/03_vehicle_dynamics/kinematic_bicycle_model.m`
+- `matlab/03_vehicle_dynamics/dynamic_bicycle_model.m`
+- `matlab/03_vehicle_dynamics/compare_kinematic_dynamic_bicycle_models.m`
+- `matlab/03_vehicle_dynamics/ackermann_steering_geometry.m`
+- `matlab/03_vehicle_dynamics/steering_actuator_limits.m`
+- `assets/images/vehicle_dynamics_*.png`
+
+### Outcome
+
+Created a GitHub-ready Vehicle Dynamics chapter with equations, block diagrams, MATLAB-result screenshots, and links to each reproducible exercise.
+
+### Next Focus
+
+Begin Phase 4: Virtual Sensors — start with a forward-facing camera, field of view, and synthetic detections in a driving scenario.
+
