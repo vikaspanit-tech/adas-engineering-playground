@@ -1,6 +1,6 @@
 # Driving Scenarios
 
-Reusable Automated Driving Toolbox scenarios for developing and validating ADAS functions. Each scenario has a visual Driving Scenario Designer project (`.mat`) and a reproducible MATLAB representation (`.m`).
+Reusable Automated Driving Toolbox scenarios for developing and validating ADAS functions. Each scenario includes a visual Driving Scenario Designer project (`.mat`) and a reproducible MATLAB representation (`.m`).
 
 ## Scenario Catalogue
 
@@ -8,14 +8,11 @@ Reusable Automated Driving Toolbox scenarios for developing and validating ADAS 
 | --- | --- | --- | --- |
 | [Scenario 01](#scenario-01--straight-highway-lead-vehicle) | Straight, two-lane highway | Slower lead vehicle in ego lane | Relative motion and repeatable traffic setup |
 | [Scenario 02](#scenario-02--curved-highway-lead-vehicle) | Curved, two-lane highway | Slower lead vehicle in ego lane | Curved road geometry and lane-following context |
+| [Scenario 03](#scenario-03--intersection-crossing-vehicle) | Two-road intersection | Timed crossing vehicle | Cross-traffic conflict and timing |
 
 ## Scenario 01 — Straight Highway Lead Vehicle
 
 ![Scenario 01 simulation view](../../assets/images/scenario01_straight_highway_lead_vehicle_simulation.png)
-
-### Objective
-
-Create a simple, repeatable lead-vehicle scenario without sensors or ADAS control logic.
 
 | Parameter | Value |
 | --- | --- |
@@ -31,43 +28,58 @@ Create a simple, repeatable lead-vehicle scenario without sensors or ADAS contro
 
 ![Scenario 02 simulation view](../../assets/images/scenario02_curved_highway_lead_vehicle_simulation.png)
 
-### Objective
-
-Create a curved-road following scenario that introduces changing road geometry while retaining a clear ego/lead-vehicle interaction.
-
-```mermaid
-flowchart LR
-    E[EgoVehicle<br/>15 m/s] -->|Closes 3 m/s speed difference| L[LeadVehicle<br/>12 m/s]
-    E --- R[Curved two-lane highway]
-    L --- R
-```
-
 | Parameter | Value |
 | --- | --- |
 | Road | Two-lane curved highway defined by three centre points |
 | Ego vehicle | `EgoVehicle`, 15 m/s (54 km/h) |
 | Lead vehicle | `LeadVehicle`, 12 m/s (43.2 km/h) |
 | Vehicle relation | Same lane; lead vehicle starts ahead of ego vehicle |
-| Scenario purpose | Study curved-road traffic motion before adding sensors or controllers |
+| Scenario purpose | Curved-road traffic motion before sensors or controllers |
+
+[Open the MATLAB function](scenario02_curved_highway_lead_vehicle.m) · `scenario02_curved_highway_lead_vehicle.mat`
+
+## Scenario 03 — Intersection Crossing Vehicle
+
+![Scenario 03 cross-traffic conflict](../../assets/images/scenario03_intersection_crossing_vehicle_conflict.png)
+
+### Objective
+
+Create a repeatable cross-traffic conflict at a two-road intersection. This scenario is the foundation for future object detection, collision warning, braking, and intersection-decision studies.
+
+```mermaid
+flowchart LR
+    E[EgoVehicle<br/>10 m/s] --> I[Intersection]
+    C[CrossingVehicle<br/>9 m/s] --> I
+    I --> X[Unmitigated crossing conflict]
+```
+
+| Parameter | Value |
+| --- | --- |
+| Main road | `MainRoad`, two lanes |
+| Crossing road | `CrossRoad`, two lanes |
+| Ego vehicle path | `(6, 0)` m to `(48, 0)` m at 10 m/s |
+| Crossing vehicle path | `(31.1, 21.6)` m to `(31.8, -21.7)` m at 9 m/s |
+| Conflict timing | Both vehicles enter the intersection at approximately 2.4 s |
+| Scenario result | Vehicle paths overlap without ADAS intervention |
 
 ### Engineering Notes
 
-- Road centre points define the road geometry; vehicle trajectory waypoints independently define how each actor moves through that geometry.
-- The ego trajectory uses six waypoints to stay aligned with the curve; the lead vehicle uses four waypoints over the remaining route.
-- The lower speeds are appropriate for this tighter curve and make the movement easier to inspect visually.
-- This is an open-loop scenario: the ego vehicle does not yet adapt its speed in response to the lead vehicle.
+- The traffic conflict is deliberate; no collision avoidance is implemented at this stage.
+- Scenario 03 separates road geometry from actor trajectories: each actor must be given its own motion path.
+- The coordinate and speed choices make the conflict deterministic and appropriate for regression testing later.
+- A perception-and-control stack should ultimately detect this condition and issue a warning, brake, or avoid the collision.
 
-[Open the MATLAB function](scenario02_curved_highway_lead_vehicle.m) · `scenario02_curved_highway_lead_vehicle.mat`
+[Open the MATLAB function](scenario03_intersection_crossing_vehicle.m) · `scenario03_intersection_crossing_vehicle.mat`
 
 ## Run a Scenario
 
 ```matlab
-[scenario, egoVehicle] = scenario02_curved_highway_lead_vehicle;
+[scenario, egoVehicle] = scenario03_intersection_crossing_vehicle;
 plot(scenario)
 ```
 
-Open a `.mat` file in Driving Scenario Designer for visual editing. Use the corresponding `.m` function for version-controlled changes, scripted scenario creation, and later scenario variations.
+Open a `.mat` file in Driving Scenario Designer for visual editing. Use the corresponding `.m` function for version-controlled changes, scripted scenario creation, and scenario variations.
 
-## Next Scenario
+## Next Topic
 
-Create an intersection scenario with crossing actors. This introduces interaction geometry beyond same-lane longitudinal following.
+Begin virtual sensor simulation: mount a forward-facing camera on the ego vehicle, define its field of view, and inspect synthetic detections.

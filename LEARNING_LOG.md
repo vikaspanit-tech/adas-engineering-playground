@@ -69,3 +69,24 @@ Created, simulated, exported, and documented Scenario 02: Curved Highway Lead Ve
 ### Next Focus
 
 Create an intersection scenario with crossing actors, then begin virtual-sensor simulation.
+## 2026-08-06 — Intersection crossing scenario complete
+
+Created, simulated, exported, and documented Scenario 03: Intersection Crossing Vehicle.
+
+### Covered
+
+- Multi-road intersection geometry
+- Straight ego-vehicle motion through an intersection
+- Perpendicular crossing-vehicle trajectory
+- Deterministic timing of a cross-traffic conflict
+- Ego-centric visual inspection of the unmitigated collision condition
+
+### Files
+
+- `matlab/02_driving_scenarios/scenario03_intersection_crossing_vehicle.m`
+- `matlab/02_driving_scenarios/scenario03_intersection_crossing_vehicle.mat`
+- `assets/images/scenario03_intersection_crossing_vehicle_conflict.png`
+
+### Next Focus
+
+Begin virtual sensor simulation with a forward-facing ego camera, its field of view, and synthetic detections.
