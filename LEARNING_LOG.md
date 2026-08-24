@@ -149,3 +149,42 @@ Completed a four-sensor simulation suite and validated each sensor's output agai
 
 Begin Phase 5: Perception — start with lane detection using the front-camera output.
 
+
+## 2026-08-24 — Perception, Fusion, and ACC prototype session
+
+Used exported virtual-sensor data from the straight-highway scenario to build the first perception-to-control prototype.
+
+### Covered
+
+- Camera lane-boundary interpretation and lane-centre estimation
+- Lateral and lane-heading errors relative to the ego vehicle
+- Camera and radar lead-vehicle measurement comparison
+- Camera-radar Kalman fusion for lead-vehicle range and relative velocity
+- Time gap and time-to-collision (TTC) calculations
+- Longitudinal driving decisions: maintain set speed, follow, and brake
+- Closed-loop adaptive cruise control (ACC) with acceleration and jerk limits
+- Sudden lead-vehicle braking stress test and TTC-triggered emergency braking
+
+### Files
+
+- `matlab/04_lane_detection/lane_center_estimation.m`
+- `matlab/05_sensor_fusion/camera_radar_lead_vehicle_fusion.m`
+- `matlab/06_control/closed_loop_acc_emergency_braking.m`
+- `assets/images/perception_lane_following_errors.png`
+- `assets/images/perception_camera_radar_kalman_fusion.png`
+- `assets/images/control_acc_ttc_decision.png`
+- `assets/images/control_acc_closed_loop_normal.png`
+- `assets/images/control_acc_emergency_braking.png`
+
+### Key Outcome
+
+Validated the first prototype chain from virtual sensor output to a fused lead-vehicle track, a safety decision based on TTC and time gap, and a simulated ACC response. The emergency-braking test showed why a production controller needs explicit state management and hysteresis after a safety intervention.
+
+### Next Focus
+
+Implement a three-mode ACC state machine: Cruise, Follow, and Emergency Brake.
+
+### Session Files Added
+
+- `matlab/06_control/lead_vehicle_ttc_decision.m`
+- `docs/05_perception/Perception_to_ACC_Prototype.md`
