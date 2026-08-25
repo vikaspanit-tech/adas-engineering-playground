@@ -188,3 +188,37 @@ Implement a three-mode ACC state machine: Cruise, Follow, and Emergency Brake.
 
 - `matlab/06_control/lead_vehicle_ttc_decision.m`
 - `docs/05_perception/Perception_to_ACC_Prototype.md`
+
+
+## 2026-08-25 — Control integration: Pure Pursuit LKA and ACC state machine
+
+Extended the perception-to-ACC prototype into an integrated control simulation, where lateral lane keeping and longitudinal adaptive cruise control drive the same ego vehicle.
+
+### Covered
+
+- Pure Pursuit lane following with a lane-centre reference and target-point selection
+- Look-ahead-distance tuning: short, long, and speed-adaptive behaviour
+- Steering-angle saturation and steering-rate limiting
+- ACC finite-state machine: Cruise, Follow, Emergency Brake, and Recover
+- Time-gap and TTC-based state transitions with hysteresis
+- Minimum Emergency Brake hold time and a jerk-limited normal acceleration actuator
+- Integrated LKA + ACC simulation using a kinematic bicycle model and a shared ego speed
+
+### Files
+
+- `matlab/06_control/pure_pursuit_lane_following.m`
+- `matlab/06_control/pure_pursuit_with_steering_limits.m`
+- `matlab/06_control/adaptive_pure_pursuit_lane_following.m`
+- `matlab/06_control/acc_state_machine.m`
+- `matlab/06_control/integrated_lka_acc_simulation.m`
+- `docs/07_planning/Lane_Following_Reference_and_Pure_Pursuit.md`
+- `docs/08_control/Adaptive_Cruise_Control.md`
+- `docs/08_control/Integrated_LKA_ACC.md`
+
+### Outcome
+
+Built the first closed-loop LKA + ACC learning model. The ego vehicle follows a changing lane centre while ACC handles a slower lead vehicle and an emergency-braking event. The exercise shows the important coupling: ACC changes ego speed, and that speed changes Pure Pursuit's look-ahead distance.
+
+### Next Focus
+
+Improve the lateral evaluation with signed cross-track error, heading error, and RMS/max tracking metrics. Then move the integrated decision and control architecture into Simulink/Stateflow.
